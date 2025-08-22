@@ -20,7 +20,11 @@ app.get('/', (request, response) => {
 
 app.get('/produtos', async (request, response) => {
 
-    const produtosBanco = await prisma.produto.findMany();
+    const produtosBanco = await prisma.produto.findMany({
+        orderBy: {
+            preco: 'asc'
+        }
+    });
 
     console.log(produtosBanco);
 
@@ -48,7 +52,7 @@ app.get('/produtos/nome/:nome', async (request, response) => {
 
     console.log(nome)
 
-    const produtoBanco = await prisma.produto.findFirst({
+    const produtoBanco = await prisma.produto.findMany({
         where: {
             nome:{
                 contains: nome
@@ -61,45 +65,79 @@ app.get('/produtos/nome/:nome', async (request, response) => {
     response.status(200).json(produtoBanco);
 })
 
-app.post('/produtos', (request, response) => {
-    const{nome, quantidade, preco} = request.body;
-    console.log(`Nome: ${nome}; Quantidade: ${quantidade}; Preco: ${preco}`);
+app.post('/produtos', async (request, response) => {
+    const{nome, estoque, preco, categoriaId} = request.body;
 
-    const novoProduto = {
-        nome: nome,
-        quantidade: quantidade,
-        preco : preco
-    }
-    //Aqui temos metodos para adicionar no banco de dados ...
+    const novoProduto = await prisma.produto.create({
+        data: {
+            nome,
+            estoque,
+            preco,
+            categoriaId
+        }
+    })
+
     response.status(201).json(novoProduto);
 })
 
-app.put('/produtos/:id', (request, response) => {
+app.put('/produtos/:id', async (request, response) => {
     const{id} = request.params;
-    console.log("Produto a ser alterado possui o ID: " + id);
 
-    const{nome, quantidade, preco} = request.body;
-    console.log(`Nome: ${nome}; Quantidade: ${quantidade}; Preco: ${preco}`);
+    const{nome, estoque, preco, categoriaId} = request.body;
 
-    const produtoEditado = {
-        nome: nome,
-        quantidade: quantidade,
-        preco : preco
-    }
+    const produtoAtualizado = await prisma.produto.update({
+        where: {
+            id: parseInt(id)
+        },
+        data: {
+            nome,
+            estoque,
+            preco,
+            categoriaId
+        }
+    })
 
-    //Metodos para alterar o produto no banco de dados...
-
-    response.status(200).json(produtoEditado);
+    response.status(200).json(produtoAtualizado);
 });
 
-app.delete('/produtos/:id', (request, response) => {
+app.patch('/produtos/:id', async (request, response) => {
     const{id} = request.params;
-    console.log("Produto a ser alterado possui o ID: " + id);
 
-    // buscar produto no banco de dados pelo ID...
-    // deletar o produto do banco...
+    const{nome, estoque, preco, categoriaId} = request.body;
 
-    response.status(200).send("Produto removido com sucesso!");
+    const produtoAtualizado = await prisma.produto.update({
+        where: {
+            id: parseInt(id)
+        },
+        data: {
+            nome,
+            estoque,
+            preco,
+            categoriaId
+        }
+    })
+
+    response.status(200).json(produtoAtualizado);
+});
+
+app.delete('/produtos/:id', async (request, response) => {
+    const{id} = request.params;
+   
+    const produtoDeletado = await prisma.produto.delete({
+        where: {
+            id: parseInt(id)
+        }
+    })
+
+    response.status(200).json(produtoDeletado);
+})
+
+// Exemplo SQL Puro no Prisma
+app.get('/sql', async (request, response) => {
+
+    const produtosDoBanco = await prisma.$queryRaw`SELECT * FROM produto WHERE id=1`
+
+    response.status(200).json(produtosDoBanco);
 })
 
 // FIM - Gerenciamento de rotas

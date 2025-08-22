@@ -15,7 +15,7 @@ datasource db {
 }
 
 model produto {
-  id          Int    @id @default(autoincrement())
+  id          String    @id @default( uuid() )
   nome        String
   preco       Float
   estoque     Int
