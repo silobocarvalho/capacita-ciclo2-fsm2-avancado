@@ -1,0 +1,30 @@
+// Instalacao do Prisma
+npm install @prisma/client
+npm install prisma --save-dev
+npx prisma init
+
+// Criacao do usuario no banco de dados para ser usado no Prisma. Essa etapa é importante para evitar usar o usuario administrador do seu banco no Prisma.
+CREATE USER capacita WITH PASSWORD '1234567890' CREATEDB;
+
+// Sempre que fizer alguma alteracao no modelo de dados do Prisma (schema.prisma), deve-se atualizar o migrate.
+// o init é o nome da tag dessa alteracao, usada para identificar melhor o que foi feito.
+npx prisma migrate dev --name init
+
+
+------------------------------
+Resumo das Principais Marcações:
+@id: Define a chave primária.
+@default: Define um valor padrão.
+@unique: Garante que o campo tenha valores únicos.
+@updatedAt: Atualiza automaticamente o campo com a data/hora da última atualização.
+@map: Mapeia o nome do campo ou modelo no banco de dados.
+@relation: Define relacionamentos entre modelos.
+@@id: Define uma chave primária composta.
+@@unique: Define uma restrição de unicidade composta.
+@@index: Cria um índice no banco de dados.
+autoincrement(): Gera valores incrementais automaticamente.
+now(): Define a data/hora atual como valor padrão.
+uuid(): Gera um UUID como valor padrão.
+
+
+O RESTANTE DAS COISAS ESTÁ NO PROPRIO CÓDIGO :-)
