@@ -19,7 +19,7 @@ model produto {
   nome        String
   preco       Float
   estoque     Int
-  categoriaId Int
+  categoria_id Int
 }
 
 model categoria {

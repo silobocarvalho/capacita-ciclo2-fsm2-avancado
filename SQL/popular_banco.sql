@@ -1,0 +1,16 @@
+INSERT INTO produto (id, nome, preco, estoque, categoria_id) VALUES
+('a0eebc99-9c0b-4ef8-bb6d-6bb9bd380a11', 'Smartphone XYZ', 1200.50, 50, 1),
+('b1c3e100-2d83-4a6c-9a4f-7b8c8d9e0f12', 'Notebook Gamer ABC', 4500.00, 15, 2),
+('c2d5f211-3e94-5b7d-ac50-8c9d9e0f1234', 'Fone de Ouvido Bluetooth', 150.99, 200, 3),
+('d3e7g322-4f15-6c8e-bd61-9d1e2f3g4h56', 'Mouse Sem Fio', 75.25, 300, 3),
+('e4f9h433-5g26-7d9f-ce72-ae2f3g4h5i67', 'Teclado Mecânico RGB', 350.70, 80, 2),
+('f5g1i544-6h37-8e0g-df83-bf3g4h5i6j78', 'Smart TV 4K', 2800.00, 30, 1),
+('g6h2j655-7i48-9f1h-eg94-cg4h5i6j7k89', 'Câmera Digital', 950.00, 45, 1),
+('h7i3k766-8j59-ae2i-fh05-dh5i6j7k8l90', 'Monitor LED 27"', 1100.50, 60, 2),
+('i8j4l877-9k6a-bf3j-gi16-ei6j7k8l9m01', 'Impressora Multifuncional', 450.80, 55, 3),
+('j9k5m988-al7b-cg4k-hj27-fj7k8l9m0n12', 'HD Externo 1TB', 280.40, 120, 2),
+('k0l6na99-bm8c-dh5l-ik38-gk8l9m0n1o23', 'Carregador Portátil 10000mAh', 90.00, 250, 3),
+('l1m7ob00-cn9d-ei6m-jl49-hl9m0n1o2p34', 'Caixa de Som Portátil', 220.60, 95, 3),
+('m2n8pc11-do0e-fj7n-km5a-im0n1o2p3q45', 'Tablet Android', 850.30, 70, 1),
+('n3o9qd22-ep1f-gk8o-ln6b-jn1o2p3q4r56', 'Webcam Full HD', 180.50, 150, 3),
+('o4p0re33-fq2g-hl9p-mo7c-ko2p3q4r5s67', 'Relógio Inteligente', 600.00, 110, 1);

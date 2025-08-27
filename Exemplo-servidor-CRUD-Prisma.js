@@ -37,7 +37,7 @@ app.get('/produtos/:id', async (request, response) => {
 
     const produtoBanco = await prisma.produto.findFirst({
         where: {
-            id: parseInt(id)
+            id: id
         }
     });
 
@@ -66,14 +66,14 @@ app.get('/produtos/nome/:nome', async (request, response) => {
 })
 
 app.post('/produtos', async (request, response) => {
-    const{nome, estoque, preco, categoriaId} = request.body;
+    const{nome, estoque, preco, categoria_id} = request.body;
 
     const novoProduto = await prisma.produto.create({
         data: {
             nome,
             estoque,
             preco,
-            categoriaId
+            categoria_id
         }
     })
 
@@ -83,17 +83,17 @@ app.post('/produtos', async (request, response) => {
 app.put('/produtos/:id', async (request, response) => {
     const{id} = request.params;
 
-    const{nome, estoque, preco, categoriaId} = request.body;
+    const{nome, estoque, preco, categoria_id} = request.body;
 
     const produtoAtualizado = await prisma.produto.update({
         where: {
-            id: parseInt(id)
+            id: id
         },
         data: {
             nome,
             estoque,
             preco,
-            categoriaId
+            categoria_id
         }
     })
 
@@ -125,7 +125,7 @@ app.delete('/produtos/:id', async (request, response) => {
    
     const produtoDeletado = await prisma.produto.delete({
         where: {
-            id: parseInt(id)
+            id: id
         }
     })
 
