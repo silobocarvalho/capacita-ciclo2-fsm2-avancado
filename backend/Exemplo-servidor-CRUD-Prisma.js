@@ -66,7 +66,11 @@ app.get('/produtos/nome/:nome', async (request, response) => {
 })
 
 app.post('/produtos', async (request, response) => {
-    const{nome, estoque, preco, categoria_id} = request.body;
+    let{nome, estoque, preco, categoriaId} = request.body;
+    console.log('Estoque: ' + estoque)
+    estoque = parseInt(estoque);
+    preco = parseFloat(preco)
+    categoriaId = parseInt(categoriaId)
 
     const novoProduto = await prisma.produto.create({
         data: {
@@ -107,7 +111,7 @@ app.patch('/produtos/:id', async (request, response) => {
 
     const produtoAtualizado = await prisma.produto.update({
         where: {
-            id: parseInt(id)
+            id: id
         },
         data: {
             nome,
